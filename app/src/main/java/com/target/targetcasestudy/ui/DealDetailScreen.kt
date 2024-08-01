@@ -15,6 +15,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -27,6 +28,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -86,9 +88,10 @@ fun DealDetailScreen(
             ) {
                 Card(
                     modifier = Modifier.padding(all = Size.medium),
-                    colors = CardDefaults.cardColors(containerColor = Color.White)
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
                 ) {
                     DealImage(url = deal.imageUrl)
+                    Spacer(modifier = Modifier.height(Size.xLarge))
                     Text(text = deal.title, fontSize = FontSize.large, fontWeight = FontWeight.W400)
                     Spacer(modifier = Modifier.height(Size.large))
                     PriceComp(regularPrice = deal.regularPrice, salePrice = deal.salePrice)
@@ -97,7 +100,7 @@ fun DealDetailScreen(
                 Spacer(modifier = Modifier.height(Size.medium))
                 Card(
                     modifier = Modifier.padding(all = Size.medium),
-                    colors = CardDefaults.cardColors(containerColor = Color.White)
+                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
                 ) {
                     Text(text = "Product details", fontSize = FontSize.large, fontWeight = FontWeight.W700)
                     Spacer(modifier = Modifier.height(Size.large))
@@ -133,6 +136,6 @@ private fun AddToCartCta() {
         onClick = {  },
         colors = ButtonDefaults.buttonColors(containerColor = Red40)
     ) {
-        Text(text = "Add To Cart")
+        Text(text = stringResource(id = R.string.add_to_cart_cta), color = MaterialTheme.colorScheme.surface)
     }
 }
