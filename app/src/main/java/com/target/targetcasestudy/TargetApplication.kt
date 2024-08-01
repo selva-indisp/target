@@ -1,7 +1,7 @@
 package com.target.targetcasestudy
 
 import android.app.Application
-import com.target.targetcasestudy.di.dealsDiModule
+import com.target.deal.di.dealsDiModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

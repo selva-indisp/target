@@ -1,0 +1,6 @@
+<resources>
+  <string name="no_internet">No active internet found. Please check your internet.</string>
+  <string name="connection_timedout">Connection to server timed out. Please try again.</string>
+  <string name="unknown_error">Something went wrong. Please try again later.</string>
+  <string name="add_to_cart_cta">Add To Cart</string>
+</resources>
