@@ -1,8 +1,7 @@
 package com.target.deal.data
 
-import com.indisp.core.Result
-import com.target.deal.core.NetworkFailure
-import com.target.deal.data.mapper.DealsDomainMapper
+import com.target.core.Result
+import com.target.core.NetworkFailure
 import com.target.deal.data.remote.DealsApi
 import com.target.deal.domain.model.Deal
 import com.target.deal.domain.repository.DealsRepository
@@ -12,29 +11,29 @@ class DealsRepositoryImpl (
     private val dealsApi: DealsApi,
     private val mapper: com.target.deal.data.mapper.DealsDomainMapper
 ): DealsRepository {
-    override suspend fun fetchDealsList(): Result<List<Deal>, com.target.deal.core.NetworkFailure> {
+    override suspend fun fetchDealsList(): Result<List<Deal>, NetworkFailure> {
         return safeApiCall {
             val response = dealsApi.retrieveDeals()
             mapper.toDealList(response)
         }
     }
 
-    override suspend fun fetchDealDetails(dealId: Int): Result<Deal, com.target.deal.core.NetworkFailure> {
+    override suspend fun fetchDealDetails(dealId: Int): Result<Deal, NetworkFailure> {
         return safeApiCall {
             val response = dealsApi.retrieveDeal(dealId)
             mapper.toDeal(response)
         }
     }
 
-    private suspend fun <T> safeApiCall(callBlock: suspend () -> T): Result<T, com.target.deal.core.NetworkFailure> {
+    private suspend fun <T> safeApiCall(callBlock: suspend () -> T): Result<T, NetworkFailure> {
         return try {
             Result.Success(callBlock())
         } catch (ioException: IOException) {
             ioException.printStackTrace()
-            Result.Error(com.target.deal.core.NetworkFailure.NoInternet)
+            Result.Error(NetworkFailure.NoInternet)
         } catch (exception: Exception) {
             exception.printStackTrace()
-            Result.Error(com.target.deal.core.NetworkFailure.UnknownFailure(exception))
+            Result.Error(NetworkFailure.UnknownFailure(exception))
         }
     }
 }

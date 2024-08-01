@@ -2,11 +2,11 @@ package com.target.deal.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.indisp.core.DispatcherProvider
-import com.indisp.core.Result
+import com.target.core.DispatcherProvider
+import com.target.core.Result
 import com.target.deal.R
-import com.target.deal.core.NetworkFailure
-import com.target.deal.core.ResourceProvider
+import com.target.core.NetworkFailure
+import com.target.core.ResourceProvider
 import com.target.deal.domain.usecase.GetDealDetailsUseCase
 import com.target.deal.ui.mapper.PresentableDealMapper
 import com.target.deal.ui.model.PresentableDeal

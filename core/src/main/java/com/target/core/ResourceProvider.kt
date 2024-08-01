@@ -1,4 +1,4 @@
-package com.target.deal.core
+package com.target.core
 
 import android.app.Application
 
@@ -8,7 +8,7 @@ interface ResourceProvider {
 
 class ResourceProviderImpl(
     private val context: Application
-) : com.target.deal.core.ResourceProvider {
+) : ResourceProvider {
 
     override fun getString(id: Int): String {
         return context.getString(id)

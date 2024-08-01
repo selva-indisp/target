@@ -1,9 +1,9 @@
 package com.target.deal.di
 
 import androidx.navigation.NavController
-import com.indisp.core.DefaultDispatcher
-import com.target.deal.core.ResourceProvider
-import com.target.deal.core.ResourceProviderImpl
+import com.target.core.DefaultDispatcher
+import com.target.core.ResourceProvider
+import com.target.core.ResourceProviderImpl
 import com.target.deal.data.DealsRepositoryImpl
 import com.target.deal.data.mapper.DealsDomainMapper
 import com.target.deal.data.remote.DealsApi
@@ -22,11 +22,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 val dealsDiModule = module {
     viewModel<DealsListViewModel> {
-        DealsListViewModel(get(), get(), DefaultDispatcher, get())
+        DealsListViewModel(get(), get(), com.target.core.DefaultDispatcher, get())
     }
 
     viewModel<DealDetailViewModel> { (dealId: Int) ->
-        DealDetailViewModel(get(), get(), dealId, DefaultDispatcher, get())
+        DealDetailViewModel(get(), get(), dealId, com.target.core.DefaultDispatcher, get())
     }
 
     factory { GetDealsUseCase(get()) }

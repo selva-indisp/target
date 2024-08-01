@@ -1,7 +1,7 @@
 package com.target.deal.domain.repository
 
-import com.indisp.core.Result
-import com.target.deal.core.NetworkFailure
+import com.target.core.Result
+import com.target.core.NetworkFailure
 import com.target.deal.domain.model.Deal
 
 interface DealsRepository {

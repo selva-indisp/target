@@ -1,4 +1,4 @@
-package com.indisp.core
+package com.target.core
 
 sealed class Result<out S, out E> {
     data class Success<S>(val data: S): Result<S, Nothing>()

@@ -1,4 +1,4 @@
-package com.indisp.core
+package com.target.core
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
