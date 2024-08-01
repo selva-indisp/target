@@ -1,4 +1,4 @@
-package com.target.deal.designsystem.resource
+package com.target.designsystem.resource
 
 import android.app.Activity
 import android.os.Build

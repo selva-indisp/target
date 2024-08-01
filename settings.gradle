@@ -8,3 +8,4 @@ pluginManagement {
 include ':app'
 include ':deal'
 include ':core'
+include ':designsystem'

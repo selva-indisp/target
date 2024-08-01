@@ -1,4 +1,4 @@
-package com.target.deal.designsystem.resource
+package com.target.designsystem.resource
 
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp

@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import com.target.deal.designsystem.resource.FontSize
-import com.target.deal.designsystem.resource.Red40
-import com.target.deal.designsystem.resource.Size
+import com.target.designsystem.resource.FontSize
+import com.target.designsystem.resource.Red40
+import com.target.designsystem.resource.Size
 
 @Composable
 fun PriceComp(modifier: Modifier = Modifier, regularPrice: String, salePrice: String) {

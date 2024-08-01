@@ -1,4 +1,4 @@
-package com.target.deal.designsystem.resource
+package com.target.designsystem.resource
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

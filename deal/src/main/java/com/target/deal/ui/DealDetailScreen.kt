@@ -33,12 +33,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.target.deal.R
-import com.target.deal.designsystem.component.LifecycleObserver
-import com.target.deal.designsystem.component.TDSLoader
-import com.target.deal.designsystem.component.TargetAppBar
-import com.target.deal.designsystem.resource.FontSize
-import com.target.deal.designsystem.resource.Red40
-import com.target.deal.designsystem.resource.Size
+import com.target.designsystem.component.LifecycleObserver
+import com.target.designsystem.component.TDSLoader
+import com.target.designsystem.component.TargetAppBar
+import com.target.designsystem.resource.FontSize
+import com.target.designsystem.resource.Red40
+import com.target.designsystem.resource.Size
 import com.target.deal.ui.DealDetailViewModel.Event
 import com.target.deal.ui.DealDetailViewModel.SideEffect
 import com.target.deal.ui.DealDetailViewModel.State
@@ -72,7 +72,12 @@ fun DealDetailScreen(
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { TargetAppBar(navController = navController, title = "Deals") },
+        topBar = {
+            TargetAppBar(
+                navController = navController,
+                title = "Deals"
+            )
+        },
         bottomBar = { AddToCartCta() }
     ) { contentPadding ->
         if (state.isLoading)

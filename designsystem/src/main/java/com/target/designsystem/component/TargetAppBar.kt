@@ -1,4 +1,4 @@
-package com.target.deal.designsystem.component
+package com.target.designsystem.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column

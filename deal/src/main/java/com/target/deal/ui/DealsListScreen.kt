@@ -31,12 +31,12 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import com.target.deal.R
-import com.target.deal.designsystem.component.LifecycleObserver
-import com.target.deal.designsystem.component.TDSLoader
-import com.target.deal.designsystem.component.TargetAppBar
-import com.target.deal.designsystem.resource.FontSize
-import com.target.deal.designsystem.resource.Green40
-import com.target.deal.designsystem.resource.Size
+import com.target.designsystem.component.LifecycleObserver
+import com.target.designsystem.component.TDSLoader
+import com.target.designsystem.component.TargetAppBar
+import com.target.designsystem.resource.FontSize
+import com.target.designsystem.resource.Green40
+import com.target.designsystem.resource.Size
 import com.target.deal.ui.DealsListViewModel.Event
 import com.target.deal.ui.DealsListViewModel.SideEffect
 import com.target.deal.ui.DealsListViewModel.State
@@ -71,7 +71,12 @@ fun DealsListScreen(
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = { TargetAppBar(navController = navController, title = "Deals") }
+        topBar = {
+            TargetAppBar(
+                navController = navController,
+                title = "Deals"
+            )
+        }
     ) { contentPadding ->
         if (state.isLoading)
             TDSLoader()

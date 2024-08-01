@@ -8,7 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.target.deal.designsystem.resource.TargetTheme
+import com.target.designsystem.resource.TargetTheme
 import com.target.deal.ui.DealDetailScreen
 import com.target.deal.ui.DealDetailViewModel
 import com.target.deal.ui.DealsListScreen
@@ -26,7 +26,10 @@ class MainActivity : AppCompatActivity() {
         setContent {
             TargetTheme {
                 val navController = rememberNavController()
-                NavHost(navController = navController, startDestination = DealsRoute.DealsList.name) {
+                NavHost(
+                    navController = navController,
+                    startDestination = DealsRoute.DealsList.name
+                ) {
                     composable(DealsRoute.DealsList.name) {
                         val router: DealsRouter = get { parametersOf(navController) }
                         val dealsListViewModel: DealsListViewModel = koinViewModel()
@@ -40,9 +43,11 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     composable(DealsRoute.DealDetail.name,
-                        arguments = listOf(navArgument("dealId") { type = NavType.IntType })) { backStackEntry ->
+                        arguments = listOf(navArgument("dealId") { type = NavType.IntType })
+                    ) { backStackEntry ->
                         val dealId = backStackEntry.arguments?.getInt("dealId") ?: 0
-                        val dealDetailViewModel: DealDetailViewModel = koinViewModel { parametersOf(dealId) }
+                        val dealDetailViewModel: DealDetailViewModel =
+                            koinViewModel { parametersOf(dealId) }
                         DealDetailScreen(
                             stateFlow = dealDetailViewModel.screenStateFlow,
                             sideEffectFlow = dealDetailViewModel.sideEffectFlow,
