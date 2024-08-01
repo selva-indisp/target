@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity() {
                 NavHost(navController = navController, startDestination = DealsRoute.DealsList.name) {
                     composable(DealsRoute.DealsList.name) {
                         val router: DealsRouter = get { parametersOf(navController) }
-                        val dealsListViewModel: DealsListViewModel = koinViewModel { parametersOf(router) }
+                        val dealsListViewModel: DealsListViewModel = koinViewModel()
+                        dealsListViewModel.updateRouter(router)
                         DealsListScreen(
                             stateFlow = dealsListViewModel.screenStateFlow,
                             sideEffectFlow = dealsListViewModel.sideEffectFlow,

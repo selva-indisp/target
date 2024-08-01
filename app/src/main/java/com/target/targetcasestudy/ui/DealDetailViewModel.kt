@@ -9,6 +9,7 @@ import com.target.targetcasestudy.core.NetworkFailure
 import com.target.targetcasestudy.domain.usecase.GetDealDetailsUseCase
 import com.target.targetcasestudy.ui.mapper.PresentableDealMapper
 import com.target.targetcasestudy.ui.model.PresentableDeal
+import com.target.targetcasestudy.ui.route.DealsRouter
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update

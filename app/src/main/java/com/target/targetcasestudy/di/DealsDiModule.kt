@@ -19,8 +19,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 val dealsDiModule = module {
-    viewModel<DealsListViewModel> { (router: DealsRouter) ->
-        DealsListViewModel(get(), get(), router, DefaultDispatcher)
+    viewModel<DealsListViewModel> {
+        DealsListViewModel(get(), get(), DefaultDispatcher)
     }
 
     viewModel<DealDetailViewModel> { (dealId: Int) ->

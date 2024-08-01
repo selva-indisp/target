@@ -19,8 +19,7 @@ import kotlinx.coroutines.launch
 
 class DealsListViewModel(
     private val getDealsUseCase: GetDealsUseCase,
-    private val mapper: PresentableDealMapper,
-    private val router: DealsRouter,
+    private val mapper: PresentableDealMapper
     private val dispatcherProvider: DispatcherProvider
 ): ViewModel() {
     private companion object {
@@ -30,6 +29,7 @@ class DealsListViewModel(
     val screenStateFlow = _screenStateFlow.asStateFlow()
     private val _sideEffectFlow = MutableStateFlow<SideEffect>(SideEffect.Idle)
     val sideEffectFlow = _sideEffectFlow.asStateFlow()
+    private var router: DealsRouter? = null
 
     private fun fetchDealsList() = viewModelScope.launch(dispatcherProvider.IO) {
         if (screenStateFlow.value.dealsList.isNotEmpty())
@@ -55,10 +55,14 @@ class DealsListViewModel(
 
     fun onEvent(event: Event) {
         when (event) {
-            is Event.OnDealClicked -> router.navigateToDealDetails(event.id)
+            is Event.OnDealClicked -> router?.navigateToDealDetails(event.id)
             Event.OnErrorShown -> resetSideEffect()
             Event.OnScreenCreated -> fetchDealsList()
         }
+    }
+
+    fun updateRouter(router: DealsRouter) {
+        this.router = router
     }
 
     data class State (
