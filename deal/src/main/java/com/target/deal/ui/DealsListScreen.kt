@@ -27,6 +27,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import coil.compose.AsyncImage
@@ -74,7 +75,7 @@ fun DealsListScreen(
         topBar = {
             TargetAppBar(
                 navController = navController,
-                title = "Deals"
+                title = stringResource(id = R.string.title_deals)
             )
         }
     ) { contentPadding ->
@@ -96,7 +97,8 @@ private fun DealsListComp(
 ) {
     LazyColumn(
         modifier = Modifier
-            .fillMaxSize().padding(padding), verticalArrangement = Arrangement.spacedBy(Size.medium)
+            .fillMaxSize()
+            .padding(padding), verticalArrangement = Arrangement.spacedBy(Size.medium)
     ) {
         items(count = list.size, key = { list[it].id }) {
             val deal = list[it]

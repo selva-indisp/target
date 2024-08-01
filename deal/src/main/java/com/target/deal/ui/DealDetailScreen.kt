@@ -2,6 +2,7 @@ package com.target.deal.ui
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -22,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -75,41 +77,62 @@ fun DealDetailScreen(
         topBar = {
             TargetAppBar(
                 navController = navController,
-                title = "Deals"
+                title = stringResource(id = R.string.title_details)
             )
-        },
-        bottomBar = { AddToCartCta() }
+        }
     ) { contentPadding ->
         if (state.isLoading)
             TDSLoader()
         state.deal?.let { deal ->
-            val scrollState = rememberScrollState()
-            Column(
+            Box(
                 modifier = Modifier
-                    .verticalScroll(scrollState)
-                    .padding(contentPadding),
-                verticalArrangement = Arrangement.Top
+                    .fillMaxSize()
+                    .padding(contentPadding)
             ) {
-                Card(
-                    modifier = Modifier.padding(all = Size.medium),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                val scrollState = rememberScrollState()
+                Column(
+                    modifier = Modifier
+                        .padding(bottom = 60.dp)
+                        .verticalScroll(scrollState),
+                    verticalArrangement = Arrangement.Top
                 ) {
-                    DealImage(url = deal.imageUrl)
-                    Spacer(modifier = Modifier.height(Size.xLarge))
-                    Text(text = deal.title, fontSize = FontSize.large, fontWeight = FontWeight.W400)
-                    Spacer(modifier = Modifier.height(Size.large))
-                    PriceComp(regularPrice = deal.regularPrice, salePrice = deal.salePrice)
-                    FulFillmentComp(fulfillment = deal.fulfillment)
+                    Card(
+                        modifier = Modifier.padding(all = Size.medium),
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                    ) {
+                        DealImage(url = deal.imageUrl)
+                        Spacer(modifier = Modifier.height(Size.xLarge))
+                        Text(
+                            text = deal.title,
+                            fontSize = FontSize.large,
+                            fontWeight = FontWeight.W400
+                        )
+                        Spacer(modifier = Modifier.height(Size.large))
+                        PriceComp(regularPrice = deal.regularPrice, salePrice = deal.salePrice)
+                        FulFillmentComp(fulfillment = deal.fulfillment)
+                    }
+                    Spacer(modifier = Modifier.height(Size.medium))
+                    Card(
+                        modifier = Modifier.padding(all = Size.medium),
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                    ) {
+                        Text(
+                            text = "Product details",
+                            fontSize = FontSize.large,
+                            fontWeight = FontWeight.W700
+                        )
+                        Spacer(modifier = Modifier.height(Size.large))
+                        Text(text = deal.description)
+                    }
                 }
-                Spacer(modifier = Modifier.height(Size.medium))
-                Card(
-                    modifier = Modifier.padding(all = Size.medium),
-                    colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
-                ) {
-                    Text(text = "Product details", fontSize = FontSize.large, fontWeight = FontWeight.W700)
-                    Spacer(modifier = Modifier.height(Size.large))
-                    Text(text = deal.description)
-                }
+
+                AddToCartCta(
+                    modifier = Modifier
+                        .align(Alignment.BottomCenter)
+                        .fillMaxWidth()
+                        .height(56.dp)
+                        .padding(all = Size.medium)
+                )
             }
         }
     }
@@ -133,13 +156,17 @@ fun DealImage(url: String, modifier: Modifier = Modifier) {
 }
 
 @Composable
-private fun AddToCartCta() {
+private fun AddToCartCta(modifier: Modifier) {
     Button(
-        modifier = Modifier
-            .fillMaxWidth(),
-        onClick = {  },
-        colors = ButtonDefaults.buttonColors(containerColor = Red40)
+        modifier = modifier,
+        onClick = { },
+        colors = ButtonDefaults.buttonColors(containerColor = Red40),
+        shape = RoundedCornerShape(Size.xSmall)
     ) {
-        Text(text = stringResource(id = R.string.add_to_cart_cta), color = MaterialTheme.colorScheme.surface)
+        Text(
+            text = stringResource(id = R.string.add_to_cart_cta),
+            color = MaterialTheme.colorScheme.surface,
+            fontWeight = FontWeight.W700
+        )
     }
 }
