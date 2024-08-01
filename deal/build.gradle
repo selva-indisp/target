@@ -1,12 +1,10 @@
 plugins {
     id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'com.google.devtools.ksp' version '1.8.21-1.0.11'
 }
 
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'dagger.hilt.android.plugin'
 
 android {
     namespace 'com.target.deal'
@@ -42,20 +40,6 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":designsystem"))
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
-
-    // JSON Parsing
-    implementation 'com.google.code.gson:gson:2.10.1'
-
-    implementation 'com.google.dagger:hilt-android:2.46.1'
-    kapt 'com.google.dagger:hilt-compiler:2.46.1'
 
     implementation(platform(libs.compose.bom))
     implementation(libs.compose.ui)
@@ -68,11 +52,14 @@ dependencies {
     implementation(libs.coil)
     implementation(libs.koin.nav)
     implementation(libs.koin)
+    implementation libs.ktx.core
+    implementation libs.appcompat
+    implementation libs.retrofit
+    implementation libs.retrofit.gson
+    implementation libs.gson
 
     // Testing
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test:runner:1.5.2'
-    androidTestImplementation 'androidx.test:core:1.5.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    testImplementation libs.junit
+    androidTestImplementation libs.junit.android
+    androidTestImplementation libs.espresso
 }
