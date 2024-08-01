@@ -98,6 +98,7 @@ private fun DealsListComp(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(Size.medium)
                     .clickable(onClick = { onClick(deal.id) })
             ) {
                 AsyncImage(
