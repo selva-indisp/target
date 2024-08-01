@@ -1,6 +1,5 @@
 package com.target.targetcasestudy.data
 
-import android.util.Log
 import com.indisp.core.Result
 import com.target.targetcasestudy.core.NetworkFailure
 import com.target.targetcasestudy.data.mapper.DealsDomainMapper
@@ -14,7 +13,6 @@ class DealsRepositoryImpl (
     private val mapper: DealsDomainMapper
 ): DealsRepository {
     override suspend fun fetchDealsList(): Result<List<Deal>, NetworkFailure> {
-        Log.d("PRODBUG2", "fetchDealsList: ")
         return safeApiCall {
             val response = dealsApi.retrieveDeals()
             mapper.toDealList(response)
@@ -22,7 +20,6 @@ class DealsRepositoryImpl (
     }
 
     override suspend fun fetchDealDetails(dealId: Int): Result<Deal, NetworkFailure> {
-        Log.d("PRODBUG2", "fetchDealDetails: ")
         return safeApiCall {
             val response = dealsApi.retrieveDeal(dealId)
             mapper.toDeal(response)

@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name">TargetCaseStudy</string>
 
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="no_internet">No active internet found. Please check your internet.</string>
+  <string name="connection_timedout">Connection to server timed out. Please try again.</string>
+  <string name="unknown_error">Something went wrong. Please try again later.</string>
 </resources>

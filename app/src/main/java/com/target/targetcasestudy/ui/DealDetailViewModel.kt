@@ -1,15 +1,15 @@
 package com.target.targetcasestudy.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.indisp.core.DispatcherProvider
 import com.indisp.core.Result
+import com.target.targetcasestudy.R
 import com.target.targetcasestudy.core.NetworkFailure
+import com.target.targetcasestudy.core.ResourceProvider
 import com.target.targetcasestudy.domain.usecase.GetDealDetailsUseCase
 import com.target.targetcasestudy.ui.mapper.PresentableDealMapper
 import com.target.targetcasestudy.ui.model.PresentableDeal
-import com.target.targetcasestudy.ui.route.DealsRouter
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -19,7 +19,8 @@ class DealDetailViewModel(
     private val getDealDetailsUseCase: GetDealDetailsUseCase,
     private val mapper: PresentableDealMapper,
     private val dealId: Int,
-    private val dispatcherProvider: DispatcherProvider
+    private val dispatcherProvider: DispatcherProvider,
+    private val resourceProvider: ResourceProvider
 ): ViewModel() {
     private companion object {
         val INITIAL_STATE = State (isLoading = true, deal = null)
@@ -36,16 +37,15 @@ class DealDetailViewModel(
         _screenStateFlow.update { it.copy(isLoading = true) }
         when (val result = getDealDetailsUseCase(dealId)) {
             is Result.Error -> {
-                val errorMessage = when (result.error) {
-                    NetworkFailure.ConnectionTimeOut -> "Connection to server timed out. Please try again."
-                    NetworkFailure.NoInternet -> "No active internet found. Please check your internet."
-                    is NetworkFailure.UnknownFailure -> "Something went wrong. Please try again later."
+                val errorMessageId = when (result.error) {
+                    NetworkFailure.ConnectionTimeOut -> R.string.connection_timedout
+                    NetworkFailure.NoInternet -> R.string.no_internet
+                    is NetworkFailure.UnknownFailure -> R.string.unknown_error
                 }
                 _screenStateFlow.update { it.copy(isLoading = false) }
-                _sideEffectFlow.update { SideEffect.ShowError(message = errorMessage) }
+                _sideEffectFlow.update { SideEffect.ShowError(message = resourceProvider.getString(errorMessageId)) }
             }
             is Result.Success -> {
-                Log.d("PRODBUG", "fetchDealDetails: $dealId -> ${result.data}")
                 _screenStateFlow.update { it.copy(isLoading = false, deal = mapper.toPresentableDeal(result.data)) }
             }
         }
